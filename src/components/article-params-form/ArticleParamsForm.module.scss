@@ -8,8 +8,18 @@
 	transition: transform 0.5s ease;
 }
 
-.container_open {
+.containerOpen {
 	transform: translate(0);
+}
+
+.overlayArrow {
+	position: fixed;
+	inset: 0;
+	visibility: hidden;
+}
+
+.overlayArrowOpen {
+	visibility: visible;
 }
 
 .form {
