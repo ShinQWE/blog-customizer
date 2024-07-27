@@ -5,16 +5,9 @@ import { Article } from '../article';
 import { ArticleParamsForm } from '../article-params-form';
 
 import styles from '../../styles/index.module.scss';
+import { defaultArticleState } from 'src/constants/articleProps';
 
 export const AppMain = () => {
-	const defaultArticleState = {
-		fontFamilyOption: { value: '' },
-		fontSizeOption: { value: '' },
-		fontColor: { value: '' },
-		contentWidth: { value: '' },
-		backgroundColor: { value: '' },
-	};
-
 	const [isAppMain, setAppMain] = useState(defaultArticleState);
 
 	const appMainStyles = {
@@ -26,9 +19,9 @@ export const AppMain = () => {
 	} as CSSProperties;
 
 	return (
-		<div className={clsx(styles.appMain)} style={appMainStyles}>
+		<main className={clsx(styles.appMain)} style={appMainStyles}>
 			<ArticleParamsForm appState={setAppMain} />
 			<Article />
-		</div>
+		</main>
 	);
 };

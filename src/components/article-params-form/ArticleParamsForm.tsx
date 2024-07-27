@@ -19,7 +19,7 @@ import { Separator } from '../separator';
 import styles from './ArticleParamsForm.module.scss';
 
 export const ArticleParamsForm = ({ appState }: ArticleParamsFormProps) => {
-	const [opened, setOpened] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [form, setForm] = useState(defaultArticleState);
 
 	{
@@ -42,8 +42,8 @@ export const ArticleParamsForm = ({ appState }: ArticleParamsFormProps) => {
 	{
 		/* открытие/закрытие формы */
 	}
-	const openForm = useCallback(() => {
-		setOpened((open) => !open);
+	const toggleForm = useCallback(() => {
+		setIsMenuOpen((open) => !open);
 	}, []);
 
 	{
@@ -59,9 +59,16 @@ export const ArticleParamsForm = ({ appState }: ArticleParamsFormProps) => {
 	}
 	return (
 		<>
-			<ArrowButton isActiveArrow={opened} onClick={openForm} />
+			<ArrowButton isActiveArrow={isMenuOpen} onClick={toggleForm} />
+			<div
+				onClick={() => setIsMenuOpen(false)}
+				className={clsx(styles.overlayArrow, {
+					[styles.overlayArrowOpen]: isMenuOpen,
+				})}></div>
 			<aside
-				className={clsx(styles.container, { [styles.containerOpen]: opened })}>
+				className={clsx(styles.container, {
+					[styles.containerOpen]: isMenuOpen,
+				})}>
 				<form onSubmit={submitForm} onReset={resetForm} className={styles.form}>
 					<Text size={31} weight={800} align='center'>
 						Задайте параметры
